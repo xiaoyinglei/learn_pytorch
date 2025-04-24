@@ -8,7 +8,7 @@ true_w = torch.tensor([2, -3.4])
 true_b = 4.2
 
 # 生成带有噪声的模拟数据 (1000条样本，2个特征)
-features, labels = d2l.synthetic_data(true_w, true_b, 1000)
+features, labels = d2l.synthetic_data(true_w, true_b, 10000)
 
 # 加载数据迭代器函数
 def load_array(data_arrays, batch_size, is_train=True):  #@save
@@ -36,7 +36,7 @@ loss = nn.MSELoss()
 trainer = torch.optim.SGD(net.parameters(), lr=0.03)
 
 # 训练循环
-num_epochs = 3
+num_epochs = 5
 for epoch in range(num_epochs):  # 总共训练3轮
     for X, y in data_iter:       # 遍历每个小批量
         l = loss(net(X), y)      # 计算预测值和真实值之间的损失
